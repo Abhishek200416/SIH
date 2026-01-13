@@ -1,0 +1,158 @@
+{
+  "identity": {
+    "name": "E1",
+    "role": "The Anti-AI Designer",
+    "principles": [
+      "Fusion over Imitation",
+      "Emotion First",
+      "Content is King",
+      "Zoom In",
+      "Negative Space",
+      "Contrast"
+    ]
+  },
+  "project_context": {
+    "name": "Delhi Air Quality Intelligence",
+    "type": "Hybrid Fullstack (Marketing + Scientific Dashboard)",
+    "audience": "Delhi residents, researchers, policy makers",
+    "tone": "Urgent, Precise, Futuristic, Authoritative",
+    "themes": ["Dark (Primary - Tech/Neon)", "Light (Secondary - Academic/Clean)"]
+  },
+  "typography": {
+    "fonts": {
+      "headings": {
+        "family": "Outfit",
+        "weights": ["400", "700", "900"],
+        "usage": "Main headings, Hero text, Section titles. Replaces Space Grotesk."
+      },
+      "body": {
+        "family": "Manrope",
+        "weights": ["400", "500", "600"],
+        "usage": "Paragraphs, UI labels, Tooltips."
+      },
+      "mono": {
+        "family": "JetBrains Mono",
+        "weights": ["400"],
+        "usage": "Data values, AQI numbers, Coordinates."
+      }
+    },
+    "rules": [
+      "Headings > 32px must use tracking-tight.",
+      "Overlines/Labels must be Uppercase + tracking-widest + text-xs.",
+      "Line height: leading-none for headers, leading-relaxed for body."
+    ]
+  },
+  "colors": {
+    "palette": {
+      "dark": {
+        "background": "#020617",
+        "surface": "#0f172a",
+        "text_primary": "#f8fafc",
+        "text_secondary": "#94a3b8",
+        "border": "rgba(255,255,255,0.1)"
+      },
+      "light": {
+        "background": "#f8fafc",
+        "surface": "#ffffff",
+        "text_primary": "#0f172a",
+        "text_secondary": "#64748b",
+        "border": "rgba(0,0,0,0.1)"
+      }
+    },
+    "aqi_scale": {
+      "good": { "color": "#00E400", "neon": "#39FF14" },
+      "satisfactory": { "color": "#FFFF00", "neon": "#FAFF00" },
+      "moderate": { "color": "#FF7E00", "neon": "#FFAF00" },
+      "poor": { "color": "#FF0000", "neon": "#FF3F3F" },
+      "very_poor": { "color": "#8F3F97", "neon": "#D946EF" },
+      "severe": { "color": "#7E0023", "neon": "#FF0055" }
+    },
+    "gradients": {
+      "hero_glow": "radial-gradient(circle at 50% 50%, rgba(0, 228, 0, 0.15), transparent 70%)",
+      "danger_glow": "radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.15), transparent 70%)"
+    }
+  },
+  "layout": {
+    "spacing_scale": ["p-1", "p-2", "p-4", "p-6", "p-8", "p-12", "p-16", "p-24", "p-32"],
+    "grids": {
+      "landing": {
+        "type": "Tetris Grid",
+        "cols": "grid-cols-1 md:grid-cols-12",
+        "gap": "gap-8",
+        "rules": "Asymmetry is key. Use col-span-full for hero, col-span-4 for features."
+      },
+      "dashboard": {
+        "type": "Bento Grid",
+        "cols": "grid-cols-1 md:grid-cols-4",
+        "gap": "gap-4",
+        "rules": "Dense packing. Every pixel utilized. Use h-full on children."
+      }
+    }
+  },
+  "components": {
+    "cards": {
+      "style": "Glassmorphism",
+      "classes": "bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl",
+      "hover": "hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+    },
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_20px_rgba(0,228,0,0.3)]",
+      "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-full px-6 py-4"
+    },
+    "inputs": {
+      "style": "bg-background/50 border-input focus:ring-2 focus:ring-primary/50 rounded-xl h-12"
+    },
+    "maps": {
+      "library": "Leaflet",
+      "style": "Custom dark tiles (CartoDB Dark Matter) for Dark Mode, Light tiles (CartoDB Positron) for Light Mode.",
+      "overlays": "Heatmap layer for pollution intensity."
+    },
+    "charts": {
+      "library": "Recharts",
+      "style": "Minimalist. Remove grid lines or make them extremely subtle. Use gradients for area charts."
+    }
+  },
+  "assets": {
+    "images": [
+      {
+        "category": "hero_background",
+        "url": "https://images.unsplash.com/photo-1762279388979-6a430989284c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwZGF0YSUyMHZpc3VhbGl6YXRpb24lMjBhYnN0cmFjdHxlbnwwfHx8fDE3NjgyOTg3MTR8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract green/blue data visualization for hero section background."
+      },
+      {
+        "category": "delhi_smog",
+        "url": "https://images.unsplash.com/photo-1766405531756-b1290ba82619?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxEZWxoaSUyMEluZGlhJTIwR2F0ZSUyMHNtb2clMjB2cyUyMGNsZWFyJTIwc2t5fGVufDB8fHx8MTc2ODI5ODcwOXww&ixlib=rb-4.1.0&q=85",
+        "description": "India Gate in smog - use for 'Current Reality' or 'Alerts' section."
+      },
+      {
+        "category": "delhi_clear",
+        "url": "https://images.unsplash.com/photo-1705259506430-cf0a734205cf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwzfHxEZWxoaSUyMEluZGlhJTIwR2F0ZSUyMHNtb2clMjB2cyUyMGNsZWFyJTIwc2t5fGVufDB8fHx8MTc2ODI5ODcwOXww&ixlib=rb-4.1.0&q=85",
+        "description": "India Gate clear/morning - use for 'Forecast' or 'Goals' section."
+      },
+      {
+        "category": "traffic_night",
+        "url": "https://images.unsplash.com/photo-1610153602032-5f2c6133b8ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwzfHxEZWxoaSUyMHRyYWZmaWMlMjBwb2xsdXRpb24lMjBuaWdodHxlbnwwfHx8fDE3NjgyOTg3MTF8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Delhi traffic at night - use for 'Sources' or 'Hotspots' context."
+      }
+    ],
+    "icons": "Lucide React (default). Use Phosphor Icons for specific weather conditions if needed."
+  },
+  "motion": {
+    "library": "framer-motion",
+    "guidelines": [
+      "Page Transitions: Opacity fade + slight y-axis movement.",
+      "Stagger Children: Use staggerChildren: 0.1 for lists and grids.",
+      "Hover: Scale 1.02 + Glow effect.",
+      "Data Updates: Animate numbers counting up (use CountUp or similar)."
+    ]
+  },
+  "universal_guidelines": [
+    "Avoid 'AI Slop': No generic centered layouts. No default blue gradients.",
+    "Dark Mode First: Design for the 'Neon/Tech' look first, then adapt for Light Mode.",
+    "Glassmorphism: Use backdrop-blur-xl heavily to create depth.",
+    "Data Density: In dashboards, density is good. Don't waste space.",
+    "Accessibility: Ensure neon colors have sufficient contrast against dark backgrounds.",
+    "Testing: Add data-testid to all interactive elements."
+  ],
+  "instructions_to_main_agent": "1. Install 'framer-motion', 'recharts', 'leaflet', 'react-leaflet'. 2. Configure Tailwind for the custom colors and fonts. 3. Build the Layout wrapper with Theme Toggle. 4. Implement the Landing Page with the 'Tetris' grid. 5. Build the Dashboard with the 'Bento' grid. 6. Ensure the Map component handles SSR correctly (Leaflet requirement)."
+}
