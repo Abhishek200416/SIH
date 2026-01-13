@@ -1,0 +1,188 @@
+{
+  "summary": {
+    "tests_run": 12,
+    "tests_passed": 12,
+    "success_rate": 100.0
+  },
+  "test_results": [
+    {
+      "test_name": "API Root",
+      "endpoint": "",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 66,
+      "has_valid_json": true,
+      "response_keys": [
+        "message",
+        "version"
+      ]
+    },
+    {
+      "test_name": "Current Air Quality",
+      "endpoint": "current-air-quality",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 174,
+      "has_valid_json": true,
+      "response_keys": [
+        "timestamp",
+        "location",
+        "no2",
+        "o3",
+        "aqi_category",
+        "aqi_value",
+        "trend_no2",
+        "trend_o3"
+      ]
+    },
+    {
+      "test_name": "NO2 Forecast 24h",
+      "endpoint": "forecast/no2",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 1885,
+      "has_valid_json": true,
+      "response_keys": [
+        "pollutant",
+        "unit",
+        "forecast_hours",
+        "data"
+      ]
+    },
+    {
+      "test_name": "NO2 Forecast 48h",
+      "endpoint": "forecast/no2",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 3703,
+      "has_valid_json": true,
+      "response_keys": [
+        "pollutant",
+        "unit",
+        "forecast_hours",
+        "data"
+      ]
+    },
+    {
+      "test_name": "O3 Forecast 24h",
+      "endpoint": "forecast/o3",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 1880,
+      "has_valid_json": true,
+      "response_keys": [
+        "pollutant",
+        "unit",
+        "forecast_hours",
+        "data"
+      ]
+    },
+    {
+      "test_name": "O3 Forecast 48h",
+      "endpoint": "forecast/o3",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 3701,
+      "has_valid_json": true,
+      "response_keys": [
+        "pollutant",
+        "unit",
+        "forecast_hours",
+        "data"
+      ]
+    },
+    {
+      "test_name": "Pollution Hotspots",
+      "endpoint": "hotspots",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 1780,
+      "has_valid_json": true,
+      "response_keys": [
+        "timestamp",
+        "locations"
+      ]
+    },
+    {
+      "test_name": "Weather Data",
+      "endpoint": "weather",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 176,
+      "has_valid_json": true,
+      "response_keys": [
+        "timestamp",
+        "temperature",
+        "humidity",
+        "wind_speed",
+        "wind_direction",
+        "solar_radiation",
+        "pressure",
+        "cloud_cover"
+      ]
+    },
+    {
+      "test_name": "Air Quality Alerts",
+      "endpoint": "alerts",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 358,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Historical Data",
+      "endpoint": "historical",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 5278,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Seasonal Patterns",
+      "endpoint": "seasonal-patterns",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 669,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Invalid Forecast Hours",
+      "endpoint": "forecast/no2",
+      "method": "GET",
+      "expected_status": 400,
+      "actual_status": 400,
+      "success": true,
+      "response_size": 35,
+      "has_valid_json": true,
+      "response_keys": [
+        "detail"
+      ]
+    }
+  ],
+  "timestamp": "2026-01-13T10:17:25.936062"
+}
