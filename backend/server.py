@@ -139,6 +139,12 @@ def generate_trend() -> str:
 async def root():
     return {"message": "Delhi Air Quality Intelligence API", "version": "1.0.0"}
 
+@api_router.get("/models/status")
+async def models_status():
+    """Get ML models availability status"""
+    status = get_model_status()
+    return status
+
 @api_router.get("/current-air-quality", response_model=CurrentAirQuality)
 async def get_current_air_quality():
     """Get current NO2 and O3 levels for Delhi from WAQI"""
