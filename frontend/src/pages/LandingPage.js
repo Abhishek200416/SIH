@@ -264,19 +264,26 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass dark:glass rounded-3xl p-12 lg:p-16 text-center border shadow-2xl relative overflow-hidden"
+            className="rounded-3xl p-12 lg:p-16 text-center shadow-2xl relative overflow-hidden"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1200&q=80)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           >
-            {/* Animated background gradient */}
+            {/* Dark overlay for better text contrast */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/70 to-indigo-900/80" />
+            
+            {/* Animated particles overlay */}
             <motion.div
               animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1]
+                opacity: [0.3, 0.6, 0.3],
               }}
-              transition={{ duration: 20, repeat: Infinity }}
-              className="absolute inset-0 bg-gradient-to-br from-aqi-good/20 via-transparent to-aqi-moderate/20"
+              transition={{ duration: 5, repeat: Infinity }}
+              className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-transparent"
             />
 
-            <div className="relative z-10">
+            <div className="relative z-10 text-white">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
