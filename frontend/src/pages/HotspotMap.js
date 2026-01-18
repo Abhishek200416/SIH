@@ -38,13 +38,16 @@ export default function HotspotMap() {
       setLocations(data.locations);
       setLoading(false);
     } catch (error) {
+      setLoading(false);
       // Check if error is due to models unavailable
-      if (error.response && error.response.status === 503) {
+      if (error?.response?.status === 503) {
+        setModelsUnavailable(true);
+      } else if (error?.response?.data?.detail?.status === 'models_unavailable') {
         setModelsUnavailable(true);
       } else {
+        console.error('Hotspots error:', error);
         toast.error('Failed to fetch hotspot data');
       }
-      setLoading(false);
     }
   };
 
