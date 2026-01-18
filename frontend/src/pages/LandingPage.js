@@ -4,6 +4,7 @@ import { ArrowRight, Activity, TrendingUp, Map, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Sun, Moon } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 export default function LandingPage() {
   const { theme, toggleTheme } = useTheme();
