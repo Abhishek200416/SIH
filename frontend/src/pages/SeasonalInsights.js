@@ -250,15 +250,26 @@ export default function SeasonalInsights() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.3 }}
         className="glass dark:glass rounded-2xl p-8 mb-6 border shadow-xl"
         data-testid="historical-chart"
       >
-        <h2 className="text-2xl font-bold font-outfit mb-6">Monthly Trends - {selectedYear}</h2>
+        <h2 className="text-2xl font-bold font-outfit mb-6">
+          {timeRange === 'months' && `Monthly Trends - ${selectedYear}`}
+          {timeRange === 'weeks' && `Weekly Trends - Last ${timeRangeValue.weeks} Weeks`}
+          {timeRange === 'days' && `Daily Trends - Last ${timeRangeValue.days} Days`}
+        </h2>
         <ResponsiveContainer width="100%" height={400}>
-          <BarChart data={yearlyData}>
+          <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-            <XAxis dataKey="month" stroke="#94a3b8" style={{ fontSize: '12px' }} />
+            <XAxis 
+              dataKey="label" 
+              stroke="#94a3b8" 
+              style={{ fontSize: '12px' }}
+              angle={timeRange === 'days' ? -45 : 0}
+              textAnchor={timeRange === 'days' ? 'end' : 'middle'}
+              height={timeRange === 'days' ? 80 : 30}
+            />
             <YAxis stroke="#94a3b8" style={{ fontSize: '12px' }} label={{ value: 'µg/m³', angle: -90, position: 'insideLeft' }} />
             <Tooltip 
               contentStyle={{ 
@@ -272,6 +283,10 @@ export default function SeasonalInsights() {
             <Bar dataKey="O₃" fill="#00E400" name="O₃ (µg/m³)" />
           </BarChart>
         </ResponsiveContainer>
+        <div className="mt-4 text-sm text-muted-foreground flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <span>Real-time data from OpenAQ • Updated to {new Date().toLocaleDateString()}</span>
+        </div>
       </motion.div>
 
       {/* Seasonal Patterns */}
