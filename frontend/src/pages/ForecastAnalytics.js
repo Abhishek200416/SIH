@@ -249,8 +249,8 @@ export default function ForecastAnalytics() {
         data-testid="forecast-chart"
       >
         {viewMode === 'combined' && (
-          <ResponsiveContainer width="100%" height={400}>
-            <AreaChart data={combinedData}>
+          <ResponsiveContainer width="100%" height={480}>
+            <AreaChart data={combinedData} margin={{ bottom: 60, left: 10, right: 10, top: 10 }}>
               <defs>
                 <linearGradient id="colorNO2" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#FF7E00" stopOpacity={0.8}/>
