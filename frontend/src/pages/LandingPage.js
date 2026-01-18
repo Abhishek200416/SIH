@@ -56,11 +56,13 @@ export default function LandingPage() {
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-aqi-good/10 via-background to-aqi-moderate/10" />
         
-        {/* Animated Glow */}
+        {/* Animated Glows */}
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3]
+            opacity: [0.3, 0.5, 0.3],
+            x: [0, 100, 0],
+            y: [0, 50, 0]
           }}
           transition={{ duration: 8, repeat: Infinity }}
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-aqi-good/20 rounded-full blur-3xl"
@@ -68,11 +70,36 @@ export default function LandingPage() {
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2]
+            opacity: [0.2, 0.4, 0.2],
+            x: [0, -100, 0],
+            y: [0, -50, 0]
           }}
           transition={{ duration: 10, repeat: Infinity, delay: 1 }}
           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-aqi-moderate/20 rounded-full blur-3xl"
         />
+
+        {/* Floating Particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0.1, 0.3, 0.1],
+              y: [0, -30, 0],
+              x: [0, i % 2 === 0 ? 20 : -20, 0],
+            }}
+            transition={{
+              duration: 5 + i,
+              repeat: Infinity,
+              delay: i * 0.5
+            }}
+            className="absolute w-2 h-2 bg-primary/50 rounded-full blur-sm"
+            style={{
+              left: `${20 + i * 15}%`,
+              top: `${30 + i * 10}%`
+            }}
+          />
+        ))}
 
         <div className="relative container mx-auto px-4 lg:px-8 text-center z-10">
           <motion.div
@@ -80,46 +107,80 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block mb-6 px-4 py-2 rounded-full glass dark:glass border border-white/20">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.3, type: "spring" }}
+              className="inline-block mb-6 px-4 py-2 rounded-full glass dark:glass border border-white/20"
+            >
               <p className="text-sm font-medium">Real-Time Air Quality Intelligence</p>
-            </div>
+            </motion.div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black font-outfit tracking-tight mb-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-black font-outfit tracking-tight mb-6"
+            >
               Breathe Aware,
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-aqi-good to-aqi-moderate">
+              <motion.span
+                initial={{ backgroundPosition: "0% 50%" }}
+                animate={{ backgroundPosition: "100% 50%" }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-aqi-good via-aqi-moderate to-aqi-good bg-[length:200%_auto]"
+              >
                 Live Better
-              </span>
-            </h1>
+              </motion.span>
+            </motion.h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
+            >
               Advanced pollution forecasting and spatial intelligence for Delhi. 
               Monitor NO₂ & O₃ levels, predict air quality trends, and make informed decisions.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
               <Link to="/dashboard">
-                <Button
-                  size="lg"
-                  className="gap-2 px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all"
-                  data-testid="open-dashboard-btn"
-                >
-                  Open Dashboard
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    size="lg"
+                    className="gap-2 px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all relative overflow-hidden group"
+                    data-testid="open-dashboard-btn"
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-aqi-good to-aqi-moderate opacity-0 group-hover:opacity-20"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                    Open Dashboard
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </motion.div>
               </Link>
               <Link to="/map">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="gap-2 px-8 py-6 text-lg rounded-full"
-                  data-testid="view-hotspots-btn"
-                >
-                  <Map className="w-5 h-5" />
-                  View Hotspots
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="gap-2 px-8 py-6 text-lg rounded-full"
+                    data-testid="view-hotspots-btn"
+                  >
+                    <Map className="w-5 h-5" />
+                    View Hotspots
+                  </Button>
+                </motion.div>
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
