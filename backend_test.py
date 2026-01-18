@@ -216,23 +216,32 @@ class AirQualityAPITester:
         """Test monthly insights endpoint with different month values"""
         print("\n🔍 Testing Monthly Insights Endpoint...")
         
-        # Test with different month values: 12, 24, 36
+        # Test with different month values: 12, 24, 36, and "all" option
         test_cases = [
             {"months": 12, "name": "Monthly Insights (12 months)"},
             {"months": 24, "name": "Monthly Insights (24 months)"},
             {"months": 36, "name": "Monthly Insights (36 months)"},
+            {"months": "all", "name": "Monthly Insights (all available data)"},
             {"months": None, "name": "Monthly Insights (default)"}  # Should default to 36
         ]
         
         all_success = True
+        all_data_response = None
+        
         for case in test_cases:
             params = {"months": case["months"]} if case["months"] is not None else None
             success, response = self.run_test(case["name"], "GET", "insights/monthly", 200, params)
             
             if success and isinstance(response, list):
                 data_points = len(response)
-                expected_months = case["months"] if case["months"] is not None else 36
-                print(f"   ✅ Found {data_points} monthly data points (expected ~{expected_months})")
+                
+                # Store "all" response for comparison
+                if case["months"] == "all":
+                    all_data_response = response
+                    print(f"   ✅ Found {data_points} monthly data points (all available data)")
+                else:
+                    expected_months = case["months"] if case["months"] is not None else 36
+                    print(f"   ✅ Found {data_points} monthly data points (expected ~{expected_months})")
                 
                 if data_points > 0:
                     sample_point = response[0]
@@ -267,8 +276,31 @@ class AirQualityAPITester:
                             avg_winter_no2 = sum(p['avg_no2'] for p in winter_months) / len(winter_months)
                             avg_summer_o3 = sum(p['avg_o3'] for p in summer_months) / len(summer_months)
                             print(f"   ✅ Seasonal patterns: Winter NO2={avg_winter_no2:.1f}, Summer O3={avg_summer_o3:.1f}")
+                        
+                        # For "all" option, verify it contains more data than limited options
+                        if case["months"] == "all" and data_points > 36:
+                            print(f"   ✅ 'All' option returns more data than 36-month limit")
+                        
+                        # Check year range for "all" option
+                        if case["months"] == "all":
+                            years = sorted(set(p['year'] for p in response))
+                            print(f"   ✅ 'All' data spans years: {min(years)} to {max(years)} ({len(years)} years)")
             else:
                 all_success = False
+        
+        # Verify "all" option returns more comprehensive data
+        if all_data_response:
+            print(f"\n   📊 'All' Option Validation:")
+            total_months = len(all_data_response)
+            years_covered = len(set(p['year'] for p in all_data_response))
+            print(f"   ✅ Total months in 'all': {total_months}")
+            print(f"   ✅ Years covered: {years_covered}")
+            
+            # Verify it includes data beyond the 36-month limit
+            if total_months > 36:
+                print(f"   ✅ 'All' option provides more comprehensive data than limited options")
+            else:
+                print(f"   ⚠️  'All' option doesn't seem to provide additional data")
         
         return all_success
 
