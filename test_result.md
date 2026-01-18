@@ -283,12 +283,9 @@ metadata:
 test_plan:
   current_focus:
     - "Real WAQI API Integration for Current Air Quality"
-    - "Real WAQI API Integration for Hotspots"
-    - "Enhanced Dashboard with Advanced Animations"
-    - "Add Premium Footer Component"
-    - "Remove Emergent Branding"
-  stuck_tasks: []
-  test_all: true
+  stuck_tasks:
+    - "Real WAQI API Integration for Current Air Quality"
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
