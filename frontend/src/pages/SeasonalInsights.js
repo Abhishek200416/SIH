@@ -111,35 +111,140 @@ export default function SeasonalInsights() {
       >
         <h1 className="text-4xl sm:text-5xl font-bold font-outfit mb-2">Seasonal Insights</h1>
         <p className="text-muted-foreground text-lg">
-          Historical trends and seasonal patterns over the past 5 years
+          Real-time historical trends from OpenAQ - showing data up to {new Date().toLocaleDateString()}
         </p>
       </motion.div>
 
-      {/* Year Selector */}
+      {/* Time Range Selector */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         className="glass dark:glass rounded-2xl p-6 mb-6 border shadow-xl"
       >
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-medium mr-2">Select Year:</span>
-          {availableYears.map(year => (
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm font-medium mr-2">View by:</span>
             <button
-              key={year}
-              onClick={() => setSelectedYear(year)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                selectedYear === year
+              onClick={() => setTimeRange('months')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                timeRange === 'months'
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-background/50 hover:bg-background/80'
               }`}
-              data-testid={`year-${year}`}
             >
-              {year}
+              <Calendar className="w-4 h-4" />
+              Months
             </button>
-          ))}
+            <button
+              onClick={() => setTimeRange('weeks')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                timeRange === 'weeks'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-background/50 hover:bg-background/80'
+              }`}
+            >
+              <Calendar className="w-4 h-4" />
+              Weeks
+            </button>
+            <button
+              onClick={() => setTimeRange('days')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                timeRange === 'days'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-background/50 hover:bg-background/80'
+              }`}
+            >
+              <Clock className="w-4 h-4" />
+              Days
+            </button>
+          </div>
+
+          {/* Time Range Value Selector */}
+          <div className="flex items-center gap-3 flex-wrap">
+            <span className="text-sm font-medium">Show last:</span>
+            {timeRange === 'months' && (
+              <>
+                {[12, 24, 36].map(val => (
+                  <button
+                    key={val}
+                    onClick={() => setTimeRangeValue({...timeRangeValue, months: val})}
+                    className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
+                      timeRangeValue.months === val
+                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50'
+                        : 'bg-background/30 hover:bg-background/50'
+                    }`}
+                  >
+                    {val} months
+                  </button>
+                ))}
+              </>
+            )}
+            {timeRange === 'weeks' && (
+              <>
+                {[4, 8, 12, 24].map(val => (
+                  <button
+                    key={val}
+                    onClick={() => setTimeRangeValue({...timeRangeValue, weeks: val})}
+                    className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
+                      timeRangeValue.weeks === val
+                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50'
+                        : 'bg-background/30 hover:bg-background/50'
+                    }`}
+                  >
+                    {val} weeks
+                  </button>
+                ))}
+              </>
+            )}
+            {timeRange === 'days' && (
+              <>
+                {[7, 14, 30, 60].map(val => (
+                  <button
+                    key={val}
+                    onClick={() => setTimeRangeValue({...timeRangeValue, days: val})}
+                    className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
+                      timeRangeValue.days === val
+                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50'
+                        : 'bg-background/30 hover:bg-background/50'
+                    }`}
+                  >
+                    {val} days
+                  </button>
+                ))}
+              </>
+            )}
+          </div>
         </div>
       </motion.div>
+
+      {/* Year Selector (only for monthly view) */}
+      {timeRange === 'months' && availableYears.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="glass dark:glass rounded-2xl p-6 mb-6 border shadow-xl"
+        >
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm font-medium mr-2">Select Year:</span>
+            {availableYears.map(year => (
+              <button
+                key={year}
+                onClick={() => setSelectedYear(year)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  selectedYear === year
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-background/50 hover:bg-background/80'
+                }`}
+                data-testid={`year-${year}`}
+              >
+                {year}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       {/* Historical Chart */}
       <motion.div
