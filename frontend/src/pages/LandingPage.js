@@ -264,24 +264,83 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass dark:glass rounded-3xl p-12 lg:p-16 text-center border shadow-2xl"
+            className="glass dark:glass rounded-3xl p-12 lg:p-16 text-center border shadow-2xl relative overflow-hidden"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit mb-6">
-              Start Monitoring Air Quality Today
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Get instant access to real-time pollution data, forecasts, and personalized health recommendations.
-            </p>
-            <Link to="/dashboard">
-              <Button
-                size="lg"
-                className="gap-2 px-10 py-6 text-lg font-semibold rounded-full"
-                data-testid="get-started-btn"
+            {/* Animated background gradient */}
+            <motion.div
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ duration: 20, repeat: Infinity }}
+              className="absolute inset-0 bg-gradient-to-br from-aqi-good/20 via-transparent to-aqi-moderate/20"
+            />
+
+            <div className="relative z-10">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit mb-6"
               >
-                Get Started
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
+                Start Monitoring Air Quality Today
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
+              >
+                Get instant access to real-time pollution data, forecasts, and personalized health recommendations.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <Link to="/dashboard">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      size="lg"
+                      className="gap-2 px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl"
+                      data-testid="get-started-btn"
+                    >
+                      Get Started
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <ArrowRight className="w-5 h-5" />
+                      </motion.div>
+                    </Button>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Floating elements */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  y: [0, -20, 0],
+                  opacity: [0.2, 0.5, 0.2]
+                }}
+                transition={{
+                  duration: 3 + i,
+                  repeat: Infinity,
+                  delay: i * 0.5
+                }}
+                className="absolute w-16 h-16 bg-primary/10 rounded-full blur-2xl"
+                style={{
+                  left: `${20 + i * 30}%`,
+                  top: `${20 + i * 20}%`
+                }}
+              />
+            ))}
           </motion.div>
         </div>
       </section>
