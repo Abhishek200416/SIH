@@ -23,6 +23,7 @@ export default function HotspotMap() {
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedSeverity, setSelectedSeverity] = useState('all');
+  const [modelsUnavailable, setModelsUnavailable] = useState(false);
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -31,11 +32,18 @@ export default function HotspotMap() {
 
   const fetchHotspots = async () => {
     try {
+      setLoading(true);
+      setModelsUnavailable(false);
       const data = await airQualityApi.getHotspots();
       setLocations(data.locations);
       setLoading(false);
     } catch (error) {
-      toast.error('Failed to fetch hotspot data');
+      // Check if error is due to models unavailable
+      if (error.response && error.response.status === 503) {
+        setModelsUnavailable(true);
+      } else {
+        toast.error('Failed to fetch hotspot data');
+      }
       setLoading(false);
     }
   };
