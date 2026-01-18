@@ -289,7 +289,7 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit mb-6"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit mb-6 text-white drop-shadow-lg"
               >
                 Start Monitoring Air Quality Today
               </motion.h2>
@@ -298,7 +298,7 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
+                className="text-lg text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md"
               >
                 Get instant access to real-time pollution data, forecasts, and personalized health recommendations.
               </motion.p>
