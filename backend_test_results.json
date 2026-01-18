@@ -35,7 +35,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 1881,
+      "response_size": 1895,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -51,7 +51,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 3746,
+      "response_size": 3705,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -67,7 +67,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 1884,
+      "response_size": 1890,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -83,7 +83,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 3710,
+      "response_size": 3701,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -99,7 +99,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 1188,
+      "response_size": 1182,
       "has_valid_json": true,
       "response_keys": [
         "timestamp",
@@ -133,7 +133,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 360,
+      "response_size": 358,
       "has_valid_json": true,
       "response_keys": "array"
     },
@@ -144,7 +144,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 5282,
+      "response_size": 5277,
       "has_valid_json": true,
       "response_keys": "array"
     },
@@ -173,5 +173,5 @@
       ]
     }
   ],
-  "timestamp": "2026-01-18T10:37:21.092057"
+  "timestamp": "2026-01-18T10:38:18.243808"
 }
