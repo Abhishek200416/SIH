@@ -294,22 +294,35 @@ async def get_o3_forecast(hours: int = 24):
     if hours not in [24, 48]:
         raise HTTPException(status_code=400, detail="Hours must be 24 or 48")
     
-    base_value = random.uniform(40, 100)
-    data = []
+    # Check if ML models are available
+    if not check_models_available():
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "models_unavailable",
+                "message": "We will be back soon, our engineers are working on it"
+            }
+        )
     
-    for i in range(hours):
-        timestamp = datetime.now(timezone.utc) + timedelta(hours=i)
-        # O3 varies with sunlight - higher during day
-        hour_of_day = (datetime.now().hour + i) % 24
-        sunlight_factor = 1.5 if 10 <= hour_of_day <= 16 else 0.7
-        
-        variation = random.uniform(-10, 10)
-        value = max(10, min(180, (base_value + variation) * sunlight_factor))
-        
+    # Try to get predictions from ML model
+    forecast_data = predict_o3_forecast(hours=hours)
+    
+    if forecast_data is None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "models_unavailable",
+                "message": "We will be back soon, our engineers are working on it"
+            }
+        )
+    
+    # Convert forecast data to response format
+    data = []
+    for point in forecast_data:
         data.append(ForecastDataPoint(
-            timestamp=timestamp,
-            value=round(value, 2),
-            confidence=round(random.uniform(0.75, 0.95), 2)
+            timestamp=datetime.fromisoformat(point["timestamp"].replace('Z', '+00:00')),
+            value=point["value"],
+            confidence=point["confidence"]
         ))
     
     return ForecastResponse(
