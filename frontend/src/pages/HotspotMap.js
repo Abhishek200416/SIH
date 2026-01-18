@@ -80,6 +80,51 @@ export default function HotspotMap() {
     );
   }
 
+  if (modelsUnavailable) {
+    return (
+      <div className="container mx-auto px-4 lg:px-8 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="glass dark:glass rounded-2xl p-12 text-center border shadow-xl"
+        >
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <svg
+                className="w-12 h-12 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                />
+              </svg>
+            </div>
+            <div className="space-y-3">
+              <h2 className="text-3xl font-bold font-outfit">We'll be back soon</h2>
+              <p className="text-lg text-muted-foreground max-w-md">
+                Our engineers are working on it. ML models for hotspot analysis are currently being configured.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Please check back later for pollution hotspot data.
+              </p>
+            </div>
+            <button 
+              onClick={fetchHotspots} 
+              className="mt-4 px-6 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 lg:px-8 py-12 overflow-x-hidden max-w-full">
       {/* Header */}
