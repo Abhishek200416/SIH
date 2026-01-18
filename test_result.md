@@ -283,15 +283,18 @@ frontend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 0
+  test_sequence: 1
   run_ui: true
 
 test_plan:
   current_focus:
-    - "Real WAQI API Integration for Current Air Quality"
-  stuck_tasks:
-    - "Real WAQI API Integration for Current Air Quality"
-  test_all: false
+    - "Enhanced Landing Page Animations"
+    - "Remove Emergent Branding"
+    - "Add Premium Footer Component"
+    - "Enhanced Dashboard with Advanced Animations"
+    - "Enhanced Navigation with Animations"
+  stuck_tasks: []
+  test_all: true
   test_priority: "high_first"
 
 agent_communication:
