@@ -136,6 +136,22 @@ class AirQualityAPITester:
                 if missing_fields:
                     print(f"   ⚠️  Missing location fields: {missing_fields}")
                     return False
+                else:
+                    # Check if we have real data from multiple Delhi stations
+                    delhi_stations = [loc['name'] for loc in response['locations']]
+                    expected_stations = ['Anand Vihar', 'ITO', 'Rohini', 'RK Puram', 'Dwarka']
+                    found_stations = [station for station in expected_stations if station in delhi_stations]
+                    print(f"   ✅ Delhi stations found: {', '.join(found_stations)}")
+                    
+                    # Check coordinate validity for Delhi
+                    valid_coords = all(
+                        28.4 <= loc['latitude'] <= 28.8 and 76.8 <= loc['longitude'] <= 77.4 
+                        for loc in response['locations']
+                    )
+                    if valid_coords:
+                        print(f"   ✅ All coordinates are within Delhi bounds")
+                    else:
+                        print(f"   ⚠️  Some coordinates may be outside Delhi")
         return success
 
     def test_weather(self):
