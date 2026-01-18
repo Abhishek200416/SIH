@@ -335,6 +335,17 @@ async def get_o3_forecast(hours: int = 24):
 @api_router.get("/hotspots", response_model=HotspotsResponse)
 async def get_hotspots():
     """Get area-wise pollution data for Delhi from WAQI"""
+    
+    # Check if ML models are available
+    if not check_models_available():
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "models_unavailable",
+                "message": "We will be back soon, our engineers are working on it"
+            }
+        )
+    
     # Delhi localities with coordinates and WAQI station names
     localities = [
         {"name": "Anand Vihar", "lat": 28.6469, "lon": 77.3162, "station": "anand-vihar"},
