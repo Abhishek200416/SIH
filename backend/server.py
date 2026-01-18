@@ -11,9 +11,14 @@ import uuid
 from datetime import datetime, timezone, timedelta
 import random
 import requests
+import httpx
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
+
+# API Configuration
+WAQI_API_TOKEN = os.environ.get('WAQI_API_TOKEN', '')
+WAQI_BASE_URL = "https://api.waqi.info"
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
