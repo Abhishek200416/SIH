@@ -128,9 +128,9 @@ backend:
 
   - task: "Real WAQI API Integration for Hotspots"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -140,6 +140,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ WORKING: Returns 10 Delhi stations with correct coordinates, NO2/O3 values, and severity categories. Fallback to mock data works when WAQI API fails. All required fields present."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL: Hotspots API now returns 503 'models_unavailable' error. This endpoint is incorrectly checking for ML models when it should work independently. The ML model check should be removed from hotspots endpoint as it's not a forecast feature."
 
   - task: "Open-Meteo Weather API Integration"
     implemented: true
@@ -158,27 +161,33 @@ backend:
 
   - task: "NO2 Forecast API"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "medium"
     needs_retesting: false
     status_history:
       - working: true
         agent: "testing"
         comment: "✅ WORKING: Both 24h and 48h forecasts return proper data with timestamps, values, and confidence levels. Proper error handling for invalid hours parameter."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL: API returns 503 'models_unavailable' error. ML models are disabled (models_enabled: false in config). This is expected behavior as per ML integration design - user needs to upload ML models and enable them."
 
   - task: "O3 Forecast API"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "medium"
     needs_retesting: false
     status_history:
       - working: true
         agent: "testing"
         comment: "✅ WORKING: Both 24h and 48h forecasts return proper data with sunlight-based O3 variations. Proper error handling for invalid hours parameter."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL: API returns 503 'models_unavailable' error. ML models are disabled (models_enabled: false in config). This is expected behavior as per ML integration design - user needs to upload ML models and enable them."
 
   - task: "Alerts API"
     implemented: true
@@ -215,6 +224,54 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ WORKING: Returns 4 seasonal patterns with accurate descriptions of Delhi's pollution cycles."
+
+  - task: "Monthly Insights API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ WORKING: Monthly insights endpoint works perfectly with different month values (12, 24, 36). Returns proper data structure with year, month, avg_no2, avg_o3, max_no2, max_o3. Data includes current month (January 2026). All NO2/O3 values within realistic ranges (50-250 µg/m³ for NO2, 30-200 µg/m³ for O3). Shows proper seasonal patterns with higher NO2 in winter months. Uses fallback algorithmic data due to invalid OpenAQ API key (401 Unauthorized). Minor: 'all' parameter not supported - returns 422 validation error."
+
+  - task: "Weekly Insights API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ WORKING: Weekly insights endpoint works perfectly with different week values (4, 8, 12, 24). Returns proper data structure with week_start, week_end, avg_no2, avg_o3, max_no2, max_o3. Dates in correct YYYY-MM-DD format. Data includes recent weeks up to current date. Max values properly greater than average values. Uses fallback algorithmic data due to invalid OpenAQ API key."
+
+  - task: "Daily Insights API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ WORKING: Daily insights endpoint works perfectly with different day values (7, 14, 30, 60). Returns proper data structure with date, avg_no2, avg_o3, max_no2, max_o3. Dates in correct YYYY-MM-DD format. Data includes today's date (January 18, 2026). All pollution values within realistic ranges. Uses fallback algorithmic data due to invalid OpenAQ API key."
+
+  - task: "Legacy Historical Endpoint Redirect"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ WORKING: Legacy /api/historical endpoint properly redirects to monthly insights endpoint. Returns identical data structure and content as /api/insights/monthly with 36 months default."
 
 frontend:
   - task: "Remove Emergent Branding"
