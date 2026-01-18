@@ -1,8 +1,8 @@
 {
   "summary": {
-    "tests_run": 12,
-    "tests_passed": 11,
-    "success_rate": 91.7
+    "tests_run": 35,
+    "tests_passed": 23,
+    "success_rate": 65.7
   },
   "test_results": [
     {
@@ -24,87 +24,65 @@
       "endpoint": "current-air-quality",
       "method": "GET",
       "expected_status": 200,
-      "actual_status": 520,
-      "success": false,
-      "response_size": 45
+      "actual_status": 200,
+      "success": true,
+      "response_size": 175,
+      "has_valid_json": true,
+      "response_keys": [
+        "timestamp",
+        "location",
+        "no2",
+        "o3",
+        "aqi_category",
+        "aqi_value",
+        "trend_no2",
+        "trend_o3"
+      ]
     },
     {
       "test_name": "NO2 Forecast 24h",
       "endpoint": "forecast/no2",
       "method": "GET",
       "expected_status": 200,
-      "actual_status": 200,
-      "success": true,
-      "response_size": 1895,
-      "has_valid_json": true,
-      "response_keys": [
-        "pollutant",
-        "unit",
-        "forecast_hours",
-        "data"
-      ]
+      "actual_status": 520,
+      "success": false,
+      "response_size": 108
     },
     {
       "test_name": "NO2 Forecast 48h",
       "endpoint": "forecast/no2",
       "method": "GET",
       "expected_status": 200,
-      "actual_status": 200,
-      "success": true,
-      "response_size": 3705,
-      "has_valid_json": true,
-      "response_keys": [
-        "pollutant",
-        "unit",
-        "forecast_hours",
-        "data"
-      ]
+      "actual_status": 520,
+      "success": false,
+      "response_size": 108
     },
     {
       "test_name": "O3 Forecast 24h",
       "endpoint": "forecast/o3",
       "method": "GET",
       "expected_status": 200,
-      "actual_status": 200,
-      "success": true,
-      "response_size": 1890,
-      "has_valid_json": true,
-      "response_keys": [
-        "pollutant",
-        "unit",
-        "forecast_hours",
-        "data"
-      ]
+      "actual_status": 520,
+      "success": false,
+      "response_size": 108
     },
     {
       "test_name": "O3 Forecast 48h",
       "endpoint": "forecast/o3",
       "method": "GET",
       "expected_status": 200,
-      "actual_status": 200,
-      "success": true,
-      "response_size": 3701,
-      "has_valid_json": true,
-      "response_keys": [
-        "pollutant",
-        "unit",
-        "forecast_hours",
-        "data"
-      ]
+      "actual_status": 520,
+      "success": false,
+      "response_size": 108
     },
     {
       "test_name": "Pollution Hotspots",
       "endpoint": "hotspots",
       "method": "GET",
       "expected_status": 200,
-      "actual_status": 200,
-      "success": true,
-      "response_size": 1182,
-      "has_valid_json": true,
-      "response_keys": [
-        "timestamp",
-        "locations"
-      ]
+      "actual_status": 520,
+      "success": false,
+      "response_size": 108
     },
     {
       "test_name": "Weather Data",
@@ -133,7 +111,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 358,
+      "response_size": 306,
       "has_valid_json": true,
       "response_keys": "array"
     },
@@ -144,7 +122,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 5277,
+      "response_size": 3165,
       "has_valid_json": true,
       "response_keys": "array"
     },
@@ -160,6 +138,245 @@
       "response_keys": "array"
     },
     {
+      "test_name": "Monthly Insights (12 months)",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 1058,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Monthly Insights (24 months)",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 2103,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Monthly Insights (36 months)",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 3178,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Monthly Insights (all available data)",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 422,
+      "success": false,
+      "response_size": 207
+    },
+    {
+      "test_name": "Monthly Insights (default)",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 3164,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Weekly Insights (4 weeks)",
+      "endpoint": "insights/weekly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 465,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Weekly Insights (8 weeks)",
+      "endpoint": "insights/weekly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 928,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Weekly Insights (12 weeks)",
+      "endpoint": "insights/weekly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 1394,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Weekly Insights (24 weeks)",
+      "endpoint": "insights/weekly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 2769,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Weekly Insights (default)",
+      "endpoint": "insights/weekly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 1392,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Daily Insights (7 days)",
+      "endpoint": "insights/daily",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 603,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Daily Insights (14 days)",
+      "endpoint": "insights/daily",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 1211,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Daily Insights (30 days)",
+      "endpoint": "insights/daily",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 2577,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Daily Insights (60 days)",
+      "endpoint": "insights/daily",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 5166,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Daily Insights (default)",
+      "endpoint": "insights/daily",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 2589,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Legacy Historical Data",
+      "endpoint": "historical",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 3171,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Monthly Insights for Comparison",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_size": 3167,
+      "has_valid_json": true,
+      "response_keys": "array"
+    },
+    {
+      "test_name": "Error Test: Negative months",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": null,
+      "actual_status": 200,
+      "success": false,
+      "response_size": 2
+    },
+    {
+      "test_name": "Error Test: Very large months",
+      "endpoint": "insights/monthly",
+      "method": "GET",
+      "expected_status": null,
+      "actual_status": 200,
+      "success": false,
+      "response_size": 87977
+    },
+    {
+      "test_name": "Error Test: Negative weeks",
+      "endpoint": "insights/weekly",
+      "method": "GET",
+      "expected_status": null,
+      "actual_status": 200,
+      "success": false,
+      "response_size": 2
+    },
+    {
+      "test_name": "Error Test: Very large weeks",
+      "endpoint": "insights/weekly",
+      "method": "GET",
+      "expected_status": null,
+      "actual_status": 200,
+      "success": false,
+      "response_size": 57850
+    },
+    {
+      "test_name": "Error Test: Negative days",
+      "endpoint": "insights/daily",
+      "method": "GET",
+      "expected_status": null,
+      "actual_status": 200,
+      "success": false,
+      "response_size": 2
+    },
+    {
+      "test_name": "Error Test: Very large days",
+      "endpoint": "insights/daily",
+      "method": "GET",
+      "expected_status": null,
+      "actual_status": 200,
+      "success": false,
+      "response_size": 857268
+    },
+    {
       "test_name": "Invalid Forecast Hours",
       "endpoint": "forecast/no2",
       "method": "GET",
@@ -173,5 +390,5 @@
       ]
     }
   ],
-  "timestamp": "2026-01-18T10:38:18.243808"
+  "timestamp": "2026-01-18T18:28:26.765763"
 }
