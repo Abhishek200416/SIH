@@ -293,7 +293,7 @@ export default function SeasonalInsights() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.4 }}
       >
         <h2 className="text-2xl font-bold font-outfit mb-6">Seasonal Patterns</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -304,7 +304,7 @@ export default function SeasonalInsights() {
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
+                transition={{ delay: 0.5 + index * 0.1 }}
                 whileHover={{ scale: 1.02, y: -5 }}
                 className="glass dark:glass rounded-2xl p-6 border hover:border-white/30 transition-all shadow-xl"
                 data-testid={`season-${index}`}
@@ -338,7 +338,7 @@ export default function SeasonalInsights() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7 }}
+        transition={{ delay: 0.8 }}
         className="glass dark:glass rounded-2xl p-8 mt-6 border shadow-xl"
       >
         <h2 className="text-2xl font-bold font-outfit mb-6">Key Insights</h2>
