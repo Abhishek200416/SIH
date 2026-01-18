@@ -312,7 +312,7 @@ export default function LandingPage() {
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       size="lg"
-                      className="gap-2 px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl"
+                      className="gap-2 px-10 py-6 text-lg font-semibold rounded-full shadow-2xl hover:shadow-3xl bg-white text-blue-900 hover:bg-blue-50 border-2 border-white/50"
                       data-testid="get-started-btn"
                     >
                       Get Started
