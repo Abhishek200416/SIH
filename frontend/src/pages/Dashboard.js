@@ -84,7 +84,7 @@ export default function Dashboard() {
   const aqiColor = getAQIColor(currentData.aqi_category);
 
   return (
-    <div className="container mx-auto px-4 lg:px-8 py-12 relative">
+    <div className="container mx-auto px-4 lg:px-8 py-12 relative overflow-x-hidden max-w-full">
       {/* Animated Background Elements */}
       <motion.div
         animate={{
