@@ -264,6 +264,9 @@ frontend:
       - working: "NA"
         agent: "main"
         comment: "Added floating particles, animated gradients, better button hover effects, and feature card animations"
+      - working: "NA"
+        agent: "main"
+        comment: "Adding striking background image to CTA section for improved visual impact"
 
   - task: "Enhanced Navigation with Animations"
     implemented: true
