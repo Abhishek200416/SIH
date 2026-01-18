@@ -1,8 +1,8 @@
 {
   "summary": {
     "tests_run": 12,
-    "tests_passed": 12,
-    "success_rate": 100.0
+    "tests_passed": 11,
+    "success_rate": 91.7
   },
   "test_results": [
     {
@@ -24,20 +24,9 @@
       "endpoint": "current-air-quality",
       "method": "GET",
       "expected_status": 200,
-      "actual_status": 200,
-      "success": true,
-      "response_size": 174,
-      "has_valid_json": true,
-      "response_keys": [
-        "timestamp",
-        "location",
-        "no2",
-        "o3",
-        "aqi_category",
-        "aqi_value",
-        "trend_no2",
-        "trend_o3"
-      ]
+      "actual_status": 520,
+      "success": false,
+      "response_size": 45
     },
     {
       "test_name": "NO2 Forecast 24h",
@@ -46,7 +35,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 1885,
+      "response_size": 1881,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -62,7 +51,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 3703,
+      "response_size": 3746,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -78,7 +67,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 1880,
+      "response_size": 1884,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -94,7 +83,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 3701,
+      "response_size": 3710,
       "has_valid_json": true,
       "response_keys": [
         "pollutant",
@@ -110,7 +99,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 1780,
+      "response_size": 1188,
       "has_valid_json": true,
       "response_keys": [
         "timestamp",
@@ -124,7 +113,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 176,
+      "response_size": 175,
       "has_valid_json": true,
       "response_keys": [
         "timestamp",
@@ -144,7 +133,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 358,
+      "response_size": 360,
       "has_valid_json": true,
       "response_keys": "array"
     },
@@ -155,7 +144,7 @@
       "expected_status": 200,
       "actual_status": 200,
       "success": true,
-      "response_size": 5278,
+      "response_size": 5282,
       "has_valid_json": true,
       "response_keys": "array"
     },
@@ -184,5 +173,5 @@
       ]
     }
   ],
-  "timestamp": "2026-01-13T10:17:25.936062"
+  "timestamp": "2026-01-18T10:37:21.092057"
 }
